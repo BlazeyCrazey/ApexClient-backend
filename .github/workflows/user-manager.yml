@@ -1,0 +1,75 @@
+name: Manage Apex Users
+
+on:
+  repository_dispatch:
+    types: [add-user, remove-user]
+
+jobs:
+  manage-user:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Process user request
+        run: |
+          ACTION="${{ github.event.action }}"
+          UUID="${{ github.event.client_payload.uuid }}"
+          CODE="${{ github.event.client_payload.code }}"
+
+          echo "Action: $ACTION"
+          echo "UUID: $UUID"
+          echo "Code: $CODE"
+
+          # Validate code exists in pending_codes.json
+          if [ ! -f pending_codes.json ]; then
+            echo "No pending codes file found"
+            exit 1
+          fi
+
+          # Check if code is valid and get its type
+          CODE_TYPE=$(jq -r --arg code "$CODE" '.codes[$code].type // empty' pending_codes.json)
+          CODE_UUID=$(jq -r --arg code "$CODE" '.codes[$code].uuid // empty' pending_codes.json)
+
+          if [ -z "$CODE_TYPE" ]; then
+            echo "Invalid or expired code"
+            exit 1
+          fi
+
+          if [ "$CODE_UUID" != "$UUID" ]; then
+            echo "Code UUID mismatch"
+            exit 1
+          fi
+
+          # Verify action matches code type
+          if [ "$ACTION" = "add-user" ] && [ "$CODE_TYPE" != "add" ]; then
+            echo "Code type mismatch - expected add"
+            exit 1
+          fi
+
+          if [ "$ACTION" = "remove-user" ] && [ "$CODE_TYPE" != "remove" ]; then
+            echo "Code type mismatch - expected remove"
+            exit 1
+          fi
+
+          # Remove the used code (one-time use)
+          jq --arg code "$CODE" 'del(.codes[$code])' pending_codes.json > tmp.json && mv tmp.json pending_codes.json
+
+          # Update users.json
+          if [ "$ACTION" = "add-user" ]; then
+            # Add user if not already present
+            jq --arg uuid "$UUID" '.users |= (. + [$uuid] | unique)' users.json > tmp.json && mv tmp.json users.json
+            echo "Added user: $UUID"
+          else
+            # Remove user
+            jq --arg uuid "$UUID" '.users |= map(select(. != $uuid))' users.json > tmp.json && mv tmp.json users.json
+            echo "Removed user: $UUID"
+          fi
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add users.json pending_codes.json
+          git diff --staged --quiet || git commit -m "Update user list via API"
+          git push
