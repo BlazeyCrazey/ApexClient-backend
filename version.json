@@ -1,9 +1,9 @@
 {
-  "version": "1.0.0-beta",
-  "version_tag": "beta-1.0.0",
-  "release_date": "2024-12-29T00:00:00Z",
-  "download_url": "https://github.com/BlazeyCrazey/ApexClient/releases",
-  "release_notes": "# Apex Client Beta 1.0.0\n\n## Features\n- Custom Minecraft launcher based on Prism Launcher\n- Automatic Apex Client mod installation for Minecraft 1.21.11 with Fabric\n- User detection to see other Apex Client users in-game\n- Seamless Microsoft authentication\n\n## Getting Started\n1. Download and install Apex Client\n2. Log in with your Microsoft account\n3. Create a new Minecraft 1.21.11 instance with Fabric loader\n4. The Apex Client mod will be automatically installed!",
+  "version": "1.0.1-beta",
+  "version_tag": "beta-1.0.1",
+  "release_date": "2024-12-30T00:00:00Z",
+  "download_url": "https://github.com/BlazeyCrazey/ApexClient-backend/releases/download/beta-1.0.1/ApexClient-BETA_1.0.1-win64.exe",
+  "release_notes": "# Apex Client Beta 1.0.1\n\n## Bug Fixes\n- Fixed TLS initialization error that prevented instance creation\n- Fixed connection issues with Modrinth and Mojang APIs\n- Launcher can now properly download game files and authenticate\n\n## Notes\n- If upgrading from 1.0.0, a fresh install is recommended",
   "required": false,
   "min_version": null
 }
