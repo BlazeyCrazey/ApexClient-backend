@@ -1,0 +1,11 @@
+{
+  "articles": [
+    {
+      "id": "apex-beta-release",
+      "title": "Apex Client Beta 1.0.0 Released!",
+      "date": "2024-12-29T00:00:00Z",
+      "content": "Welcome to the first beta release of Apex Client! This custom Minecraft launcher includes automatic mod installation for Minecraft 1.21.11 with Fabric loader. Features include user detection to see other Apex Client users in-game.",
+      "link": "https://github.com/BlazeyCrazey/ApexClient"
+    }
+  ]
+}
