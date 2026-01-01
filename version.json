@@ -1,9 +1,9 @@
 {
-  "version": "1.0.1-beta",
-  "version_tag": "beta-1.0.1",
-  "release_date": "2024-12-30T00:00:00Z",
-  "download_url": "https://github.com/BlazeyCrazey/ApexClient-backend/releases/download/beta-1.0.1/ApexClient-BETA_1.0.1-win64.exe",
-  "release_notes": "# Apex Client Beta 1.0.1\n\n## Bug Fixes\n- Fixed TLS initialization error that prevented instance creation\n- Fixed connection issues with Modrinth and Mojang APIs\n- Launcher can now properly download game files and authenticate\n\n## Notes\n- If upgrading from 1.0.0, a fresh install is recommended",
+  "version": "1.0.2-beta",
+  "version_tag": "beta-1.0.2",
+  "release_date": "2024-12-31T00:00:00Z",
+  "download_url": "https://github.com/BlazeyCrazey/ApexClient-backend/releases/download/beta-1.0.2/ApexClient-BETA_1.0.2-win64.exe",
+  "release_notes": "# Apex Client Beta 1.0.2\n\n## New Features\n- Custom Microsoft OAuth authentication with Apex Client branding\n- Updated Azure App registration for secure login\n\n## Improvements\n- Microsoft login now shows 'Apex Client' instead of 'Prism Launcher'\n- Improved authentication flow reliability",
   "required": false,
   "min_version": null
 }
