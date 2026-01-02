@@ -1,6 +1,13 @@
 {
   "articles": [
     {
+      "id": "apex-beta-1.0.2",
+      "title": "Apex Client Beta 1.0.2 Released!",
+      "date": "2026-01-02T00:00:00Z",
+      "content": "Version 1.0.2 fixes the Microsoft authentication issue! Login now works properly. This update also adds Prism Launcher attribution to the login dialog, showing that authentication is provided through Prism Launcher's secure OAuth system.",
+      "link": "https://github.com/BlazeyCrazey/ApexClient"
+    },
+    {
       "id": "apex-beta-release",
       "title": "Apex Client Beta 1.0.0 Released!",
       "date": "2024-12-29T00:00:00Z",
